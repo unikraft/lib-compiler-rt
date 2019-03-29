@@ -1,0 +1,3 @@
+menuconfig LIBCOMPILER_RT
+    bool " compiler-rt - runtime support"
+    default n
