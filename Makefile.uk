@@ -73,6 +73,10 @@ CONFIG_FLAGS	+= -D__x86_64__
 LIBCOMPILER_RT_CFLAGS-y    +=  $(CONFIG_FLAGS)
 LIBCOMPILER_RT_CXXFLAGS-y    +=  $(CONFIG_FLAGS)
 
+SUPPRESS_FLAGS += -Wno-unused-parameter
+LIBCOMPILER_RT_CFLAGS-y   += $(SUPPRESS_FLAGS)
+LIBCOMPILER_RT_CXXFLAGS-y += $(SUPPRESS_FLAGS)
+
 ################################################################################
 # Library sources
 ################################################################################
