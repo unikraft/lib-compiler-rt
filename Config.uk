@@ -1,3 +1,10 @@
 menuconfig LIBCOMPILER_RT
     bool " compiler-rt - runtime support"
     default n
+
+if LIBCOMPILER_RT
+    config LIBCOMPILER_RT_ATOMIC
+    bool "Implementation of an atomics library"
+    select CXX_THREADS
+    default N
+endif

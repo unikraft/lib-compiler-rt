@@ -236,3 +236,6 @@ LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/fixsfdi.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/fixdfti.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/floatdidf.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/extendsfdf2.c
+ifdef CONFIG_LIBCOMPILER_RT_ATOMIC
+LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/atomic.c
+endif
