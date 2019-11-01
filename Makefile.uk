@@ -226,7 +226,6 @@ LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/divdc3.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/multc3.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/divtf3.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/negdi2.c
-LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/eprintf.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/clear_cache.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/addsf3.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/adddf3.c
