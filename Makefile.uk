@@ -69,9 +69,6 @@ CXXINCLUDES-$(CONFIG_LIBCOMPILER_RT) += -I$(LIBCOMPILER_RT_SRC)/include
 ################################################################################
 # Global flags
 ################################################################################
-CONFIG_FLAGS	+= -D__x86_64__
-LIBCOMPILER_RT_CFLAGS-y    +=  $(CONFIG_FLAGS)
-LIBCOMPILER_RT_CXXFLAGS-y    +=  $(CONFIG_FLAGS)
 
 LIBCOMPILER_RT_SUPPRESS_FLAGS += -Wno-unused-parameter
 LIBCOMPILER_RT_CFLAGS-y   += $(LIBCOMPILER_RT_SUPPRESS_FLAGS)
@@ -101,7 +98,7 @@ LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/fixunsdfdi.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/udivmodti4.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/floattisf.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/mulodi4.c
-LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/cpu_model.c
+LIBCOMPILER_RT_SRCS-$(CONFIG_ARCH_X86_64) += $(LIBCOMPILER_RT_SRC)/lib/builtins/cpu_model.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/fixunsxfsi.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/fixunstfdi.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/extendsftf2.c
@@ -235,6 +232,9 @@ LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/fixsfdi.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/fixdfti.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/floatdidf.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/extendsfdf2.c
+LIBCOMPILER_RT_SRCS-$(CONFIG_ARCH_X86_64) += $(LIBCOMPILER_RT_SRC)/lib/builtins/x86_64/chkstk2.S
+LIBCOMPILER_RT_SRCS-$(CONFIG_ARCH_X86_64) += $(LIBCOMPILER_RT_SRC)/lib/builtins/x86_64/chkstk.S
+
 ifdef CONFIG_LIBCOMPILER_RT_ATOMIC
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/atomic.c
 endif
