@@ -70,7 +70,7 @@ CXXINCLUDES-$(CONFIG_LIBCOMPILER_RT) += -I$(LIBCOMPILER_RT_SRC)/include
 # Global flags
 ################################################################################
 
-LIBCOMPILER_RT_SUPPRESS_FLAGS += -Wno-unused-parameter
+LIBCOMPILER_RT_SUPPRESS_FLAGS += -Wno-unused-parameter -Wno-builtin-declaration-mismatch
 LIBCOMPILER_RT_CFLAGS-y   += $(LIBCOMPILER_RT_SUPPRESS_FLAGS)
 LIBCOMPILER_RT_CXXFLAGS-y += $(LIBCOMPILER_RT_SUPPRESS_FLAGS)
 
