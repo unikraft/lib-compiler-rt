@@ -62,8 +62,11 @@ LIBCOMPILER_RT_SRC=$(LIBCOMPILER_RT_ORIGIN)/$(LIBCOMPILER_RT_SUBDIR)
 # Library includes
 ################################################################################
 CINCLUDES-$(CONFIG_LIBCOMPILER_RT) += -I$(LIBCOMPILER_RT_SRC)/lib
+CINCLUDES-$(CONFIG_LIBCOMPILER_RT) += -I$(LIBCOMPILER_RT_SRC)/lib/builtins
 CINCLUDES-$(CONFIG_LIBCOMPILER_RT) += -I$(LIBCOMPILER_RT_SRC)/include
+
 CXXINCLUDES-$(CONFIG_LIBCOMPILER_RT) += -I$(LIBCOMPILER_RT_SRC)/lib
+CXXINCLUDES-$(CONFIG_LIBCOMPILER_RT) += -I$(LIBCOMPILER_RT_SRC)/lib/builtins
 CXXINCLUDES-$(CONFIG_LIBCOMPILER_RT) += -I$(LIBCOMPILER_RT_SRC)/include
 
 ################################################################################
@@ -238,3 +241,5 @@ LIBCOMPILER_RT_SRCS-$(CONFIG_ARCH_X86_64) += $(LIBCOMPILER_RT_SRC)/lib/builtins/
 ifdef CONFIG_LIBCOMPILER_RT_ATOMIC
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/atomic.c
 endif
+
+LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_BASE)/lib/builtins/clrsbdi2.c
