@@ -1,6 +1,6 @@
 menuconfig LIBCOMPILER_RT
     bool " compiler-rt - runtime support"
-    select UKSYSINFO
+    select LIBPOSIX_SYSINFO
     default n
 
 if LIBCOMPILER_RT
