@@ -1,5 +1,5 @@
 menuconfig LIBCOMPILER_RT
-    bool " compiler-rt - runtime support"
+    bool "compiler-rt - runtime support"
     select LIBPOSIX_SYSINFO
     default n
 
