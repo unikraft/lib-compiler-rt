@@ -1,6 +1,7 @@
 menuconfig LIBCOMPILER_RT
     bool "compiler-rt - runtime support"
     select LIBPOSIX_SYSINFO
+    select LIBUKMMAP
     default n
 
 if LIBCOMPILER_RT
