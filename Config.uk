@@ -3,7 +3,3 @@ menuconfig LIBCOMPILER_RT
 	select LIBPOSIX_SYSINFO
 	select LIBUNWIND
 	default n
-
-if LIBCOMPILER_RT
-
-endif
