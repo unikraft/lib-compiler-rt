@@ -38,7 +38,7 @@
 ################################################################################
 $(eval $(call addlib_s,libcompiler_rt,$(CONFIG_LIBCOMPILER_RT)))
 
-ifeq ($(CONFIG_LIBCOMPILER_RT),y)
+ifeq ($(CONFIG_LIBCOMPILER_RT_GCCPERSONALITY),y)
 ifneq ($(CONFIG_LIBUNWIND),y)
 $(error Require libunwind)
 endif
@@ -177,7 +177,6 @@ LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/floatuntisf.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/floatuntitf.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/floatuntixf.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/fp_mode.c
-LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/gcc_personality_v0.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/int_util.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/lshrdi3.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/lshrti3.c
@@ -245,6 +244,8 @@ LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/umodti3.c
 LIBCOMPILER_RT_SRCS-$(CONFIG_ARCH_X86_64) += $(LIBCOMPILER_RT_SRC)/lib/builtins/cpu_model.c
 LIBCOMPILER_RT_SRCS-$(CONFIG_ARCH_X86_64) += $(LIBCOMPILER_RT_SRC)/lib/builtins/x86_64/chkstk2.S
 LIBCOMPILER_RT_SRCS-$(CONFIG_ARCH_X86_64) += $(LIBCOMPILER_RT_SRC)/lib/builtins/x86_64/chkstk.S
+
+LIBCOMPILER_RT_SRCS-$(CONFIG_LIBCOMPILER_RT_GCCPERSONALITY) += $(LIBCOMPILER_RT_SRC)/lib/builtins/gcc_personality_v0.c
 
 LIBCOMPILER_RT_SRCS-$(CONFIG_LIBCOMPILER_RT_ATOMIC) += $(LIBCOMPILER_RT_SRC)/lib/builtins/atomic.c
 LIBCOMPILER_RT_SRCS-$(CONFIG_LIBCOMPILER_RT_ATOMIC) += $(LIBCOMPILER_RT_SRC)/lib/builtins/atomic_flag_clear.c

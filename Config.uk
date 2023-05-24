@@ -2,7 +2,6 @@ menuconfig LIBCOMPILER_RT
     bool "compiler-rt - runtime support"
     select LIBPOSIX_SYSINFO
     imply LIBUKMMAP
-    select LIBUNWIND
     default n
 
 if LIBCOMPILER_RT
@@ -10,4 +9,10 @@ if LIBCOMPILER_RT
     bool "Implementation of an atomics library"
     select CXX_THREADS
     default N
+
+    config LIBCOMPILER_RT_GCCPERSONALITY
+    bool "Implementation of GCC personality"
+    depends on LIBUNWIND
+    default N
+
 endif
