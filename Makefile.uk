@@ -67,6 +67,8 @@ CINCLUDES-$(CONFIG_LIBCOMPILER_RT) += -I$(LIBCOMPILER_RT_SRC)/lib/builtins
 CXXINCLUDES-$(CONFIG_LIBCOMPILER_RT) += -I$(LIBCOMPILER_RT_SRC)/lib
 CXXINCLUDES-$(CONFIG_LIBCOMPILER_RT) += -I$(LIBCOMPILER_RT_SRC)/lib/builtins
 
+LIBCOMPILER_RT_CINCLUDES-$(call have_gcc) += -iquote$(LIBCOMPILER_RT_BASE)/include
+
 ################################################################################
 # Global flags
 ################################################################################

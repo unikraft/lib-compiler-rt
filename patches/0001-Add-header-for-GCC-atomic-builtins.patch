@@ -1,0 +1,32 @@
+From 4d39ccc51bac5fb2356d2bf7e29a919e8430c96d Mon Sep 17 00:00:00 2001
+From: Andrei Tatar <andrei@unikraft.io>
+Date: Wed, 24 May 2023 13:05:03 +0300
+Subject: [PATCH] Add header for GCC atomic builtins
+
+compiler-rt relies on clang's __c11_atomic builtins which GCC does not
+have. This patch adds a unikraft header which implements these builtins
+in terms of GCC ones.
+
+Signed-off-by: Andrei Tatar <andrei@unikraft.io>
+---
+ compiler-rt/lib/builtins/atomic.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/compiler-rt/lib/builtins/atomic.c b/compiler-rt/lib/builtins/atomic.c
+index 8dc2f4fc0..59667f888 100644
+--- a/lib/builtins/atomic.c
++++ b/lib/builtins/atomic.c
+@@ -29,6 +29,10 @@
+ 
+ #include "assembly.h"
+ 
++#if defined(__GNUC__) && !defined(__clang__)
++#include "gcc_atomics.h"
++#endif /* __GNUC__ && !defined(__clang__) */
++
+ // We use __builtin_mem* here to avoid dependencies on libc-provided headers.
+ #define memcpy __builtin_memcpy
+ #define memcmp __builtin_memcmp
+-- 
+2.40.1
+
