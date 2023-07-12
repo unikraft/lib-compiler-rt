@@ -1,7 +1,7 @@
 menuconfig LIBCOMPILER_RT
     bool "compiler-rt - runtime support"
     select LIBPOSIX_SYSINFO
-    select LIBUKMMAP
+    imply LIBUKMMAP
     select LIBUNWIND
     default n
 
