@@ -38,12 +38,6 @@
 ################################################################################
 $(eval $(call addlib_s,libcompiler_rt,$(CONFIG_LIBCOMPILER_RT)))
 
-ifeq ($(CONFIG_LIBCOMPILER_RT_GCCPERSONALITY),y)
-ifneq ($(CONFIG_LIBUNWIND),y)
-$(error Require libunwind)
-endif
-endif
-
 ################################################################################
 # Sources
 ################################################################################
