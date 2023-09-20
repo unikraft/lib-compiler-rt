@@ -66,8 +66,9 @@ LIBCOMPILER_RT_CINCLUDES-$(call have_gcc) += -iquote$(LIBCOMPILER_RT_BASE)/inclu
 ################################################################################
 # Global flags
 ################################################################################
+
 LIBCOMPILER_RT_SUPPRESS_FLAGS-y += -Wno-unused-parameter
-LIBCOMPILER_RT_SUPPRESS_FLAGS-$(have_gcc) += -Wno-builtin-declaration-mismatch
+LIBCOMPILER_RT_SUPPRESS_FLAGS-$(call have_gcc) += -Wno-unused-but-set-variable -Wno-maybe-uninitialized -Wno-builtin-declaration-mismatch
 
 LIBCOMPILER_RT_CFLAGS-y   += $(LIBCOMPILER_RT_SUPPRESS_FLAGS-y)
 LIBCOMPILER_RT_CXXFLAGS-y += $(LIBCOMPILER_RT_SUPPRESS_FLAGS-y)
