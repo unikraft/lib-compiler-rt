@@ -41,7 +41,7 @@ $(eval $(call addlib_s,libcompiler_rt,$(CONFIG_LIBCOMPILER_RT)))
 ################################################################################
 # Sources
 ################################################################################
-LIBCOMPILER_RT_VERSION=14.0.6
+LIBCOMPILER_RT_VERSION=15.0.0
 LIBCOMPILER_RT_URL=https://github.com/llvm/llvm-project/releases/download/llvmorg-$(LIBCOMPILER_RT_VERSION)/compiler-rt-$(LIBCOMPILER_RT_VERSION).src.tar.xz
 LIBCOMPILER_RT_PATCHDIR=$(LIBCOMPILER_RT_BASE)/patches
 $(eval $(call fetch,libcompiler_rt,$(LIBCOMPILER_RT_URL)))
