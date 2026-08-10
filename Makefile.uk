@@ -41,7 +41,11 @@ $(eval $(call addlib_s,libcompiler_rt,$(CONFIG_LIBCOMPILER_RT)))
 ################################################################################
 # Sources
 ################################################################################
+ifeq ($(CONFIG_LIBCOMPILER_RT_RELEASE2118),y)
+LIBCOMPILER_RT_VERSION=21.1.8
+else
 LIBCOMPILER_RT_VERSION=14.0.6
+endif
 LIBCOMPILER_RT_URL=https://github.com/llvm/llvm-project/releases/download/llvmorg-$(LIBCOMPILER_RT_VERSION)/compiler-rt-$(LIBCOMPILER_RT_VERSION).src.tar.xz
 LIBCOMPILER_RT_PATCHDIR=$(LIBCOMPILER_RT_BASE)/patches
 $(eval $(call fetch,libcompiler_rt,$(LIBCOMPILER_RT_URL)))
@@ -113,23 +117,23 @@ LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/extendsfdf2.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/ffsdi2.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/ffssi2.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/ffsti2.c
-LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/fixunsxfdi.c
-LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/fixunsxfsi.c
-LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/fixunsxfti.c
-LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/fixxfdi.c
-LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/fixxfti.c
+LIBCOMPILER_RT_SRCS-$(CONFIG_ARCH_X86_64) += $(LIBCOMPILER_RT_SRC)/lib/builtins/fixunsxfdi.c
+LIBCOMPILER_RT_SRCS-$(CONFIG_ARCH_X86_64) += $(LIBCOMPILER_RT_SRC)/lib/builtins/fixunsxfsi.c
+LIBCOMPILER_RT_SRCS-$(CONFIG_ARCH_X86_64) += $(LIBCOMPILER_RT_SRC)/lib/builtins/fixunsxfti.c
+LIBCOMPILER_RT_SRCS-$(CONFIG_ARCH_X86_64) += $(LIBCOMPILER_RT_SRC)/lib/builtins/fixxfdi.c
+LIBCOMPILER_RT_SRCS-$(CONFIG_ARCH_X86_64) += $(LIBCOMPILER_RT_SRC)/lib/builtins/fixxfti.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/floatdisf.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/floatditf.c
-LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/floatdixf.c
+LIBCOMPILER_RT_SRCS-$(CONFIG_ARCH_X86_64) += $(LIBCOMPILER_RT_SRC)/lib/builtins/floatdixf.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/floattidf.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/floattisf.c
-LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/floattixf.c
+LIBCOMPILER_RT_SRCS-$(CONFIG_ARCH_X86_64) += $(LIBCOMPILER_RT_SRC)/lib/builtins/floattixf.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/floatundisf.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/floatunditf.c
-LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/floatundixf.c
+LIBCOMPILER_RT_SRCS-$(CONFIG_ARCH_X86_64) += $(LIBCOMPILER_RT_SRC)/lib/builtins/floatundixf.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/floatuntidf.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/floatuntisf.c
-LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/floatuntixf.c
+LIBCOMPILER_RT_SRCS-$(CONFIG_ARCH_X86_64) += $(LIBCOMPILER_RT_SRC)/lib/builtins/floatuntixf.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/fp_mode.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/int_util.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/lshrdi3.c
@@ -150,7 +154,7 @@ LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/multi3.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/mulvdi3.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/mulvsi3.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/mulvti3.c
-LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/mulxc3.c
+LIBCOMPILER_RT_SRCS-$(CONFIG_ARCH_X86_64) += $(LIBCOMPILER_RT_SRC)/lib/builtins/mulxc3.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/negdi2.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/negti2.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/negvdi2.c
@@ -165,7 +169,7 @@ LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/popcountsi2.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/popcountti2.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/powidf2.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/powisf2.c
-LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/powixf2.c
+LIBCOMPILER_RT_SRCS-$(CONFIG_ARCH_X86_64) += $(LIBCOMPILER_RT_SRC)/lib/builtins/powixf2.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/subvdi3.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/subvsi3.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/subvti3.c
@@ -185,9 +189,13 @@ LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/umoddi3.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/umodsi3.c
 LIBCOMPILER_RT_SRCS-y += $(LIBCOMPILER_RT_SRC)/lib/builtins/umodti3.c
 
+LIBCOMPILER_RT_SRCS-$(CONFIG_ARCH_X86_64) += $(LIBCOMPILER_RT_SRC)/lib/builtins/x86_64/chkstk.S
+ifeq ($(CONFIG_LIBCOMPILER_RT_RELEASE2118),y)
+LIBCOMPILER_RT_SRCS-$(CONFIG_ARCH_X86_64) += $(LIBCOMPILER_RT_SRC)/lib/builtins/cpu_model/x86.c
+else
 LIBCOMPILER_RT_SRCS-$(CONFIG_ARCH_X86_64) += $(LIBCOMPILER_RT_SRC)/lib/builtins/cpu_model.c
 LIBCOMPILER_RT_SRCS-$(CONFIG_ARCH_X86_64) += $(LIBCOMPILER_RT_SRC)/lib/builtins/x86_64/chkstk2.S
-LIBCOMPILER_RT_SRCS-$(CONFIG_ARCH_X86_64) += $(LIBCOMPILER_RT_SRC)/lib/builtins/x86_64/chkstk.S
+endif
 
 LIBCOMPILER_RT_SRCS-$(CONFIG_LIBCOMPILER_RT_MATH) += $(LIBCOMPILER_RT_SRC)/lib/builtins/addtf3.c
 LIBCOMPILER_RT_SRCS-$(CONFIG_LIBCOMPILER_RT_MATH) += $(LIBCOMPILER_RT_SRC)/lib/builtins/comparedf2.c
@@ -197,7 +205,9 @@ LIBCOMPILER_RT_SRCS-$(CONFIG_LIBCOMPILER_RT_MATH) += $(LIBCOMPILER_RT_SRC)/lib/b
 LIBCOMPILER_RT_SRCS-$(CONFIG_LIBCOMPILER_RT_MATH) += $(LIBCOMPILER_RT_SRC)/lib/builtins/divsc3.c
 LIBCOMPILER_RT_SRCS-$(CONFIG_LIBCOMPILER_RT_MATH) += $(LIBCOMPILER_RT_SRC)/lib/builtins/divtc3.c
 LIBCOMPILER_RT_SRCS-$(CONFIG_LIBCOMPILER_RT_MATH) += $(LIBCOMPILER_RT_SRC)/lib/builtins/divtf3.c
+ifeq ($(CONFIG_ARCH_X86_64),y)
 LIBCOMPILER_RT_SRCS-$(CONFIG_LIBCOMPILER_RT_MATH) += $(LIBCOMPILER_RT_SRC)/lib/builtins/divxc3.c
+endif
 LIBCOMPILER_RT_SRCS-$(CONFIG_LIBCOMPILER_RT_MATH) += $(LIBCOMPILER_RT_SRC)/lib/builtins/extenddftf2.c
 LIBCOMPILER_RT_SRCS-$(CONFIG_LIBCOMPILER_RT_MATH) += $(LIBCOMPILER_RT_SRC)/lib/builtins/extendhftf2.c
 LIBCOMPILER_RT_SRCS-$(CONFIG_LIBCOMPILER_RT_MATH) += $(LIBCOMPILER_RT_SRC)/lib/builtins/extendsftf2.c
