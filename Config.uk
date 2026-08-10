@@ -5,6 +5,31 @@ menuconfig LIBCOMPILER_RT
     default n
 
 if LIBCOMPILER_RT
+
+choice
+	prompt "Version"
+	default LIBCOMPILER_RT_RELEASE2118
+	help
+		Select the version of the upstream compiler-rt
+		sources that will be downloaded.
+		Please note that you should run `make properclean`
+		whenever you change the version.
+
+config LIBCOMPILER_RT_RELEASE1406
+	bool "Release 14.0.6"
+	help
+		An official release from the LLVM project.
+
+config LIBCOMPILER_RT_RELEASE2118
+	bool "Release 21.1.8"
+	select LIBINTEL_INTRINSICS if ARCH_X86_64
+	help
+		An official release from the LLVM project.
+		On x86_64 the cpu_model sources require <cpuid.h>, which is
+		provided by lib-intel-intrinsics.
+
+endchoice
+
     config LIBCOMPILER_RT_MATH
     bool "Routines dependent on a math library"
     default y if LIBMUSL_MATH || LIBNEWLIBM
